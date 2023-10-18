@@ -3,6 +3,7 @@ Decodes Openreach-format DAT billing files for backoffice processing.
 
 Example:
 
+```
 <?php
 
 // Load OR Billing Helper
@@ -18,3 +19,5 @@ $btor->load($file);
 // Render to screen
 $txt = $btor->toText();
 print_r($txt);
+?>
+```
