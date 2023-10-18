@@ -7,7 +7,14 @@
   */
 Class ORBillDecoder{
 
+	// index of all bill entries
 	var $file;
+
+	// meta
+	var $ref;
+	var $date;
+	var $service;
+	var $total;
 
 	// generic record defs
 	var $record_types = array(
@@ -193,6 +200,26 @@ Class ORBillDecoder{
 		}
 
 		$this->file = $file;
+		$this->extractMeta();
+	}
+
+	/**
+	  * Extract vital bill meta into object
+	  *
+	  */
+	function extractMeta(){
+		foreach($this->file as &$record){
+			switch(@$record['Record Type']){
+				case 'CUSTOMERRECORD':
+					$this->service = @$record['Bill title or service name'];
+					$this->ref = $this->formatDate(@$record['Invoice reference']);
+					$this->date = $this->formatDate(@$record['Bill tax date']);
+				break;
+				case 'BILLSUMMARYRECORD':
+					$this->total = @$record['Net total of total bill charges'] / 100;
+				break;
+			}
+		}
 	}
 
 	/**
