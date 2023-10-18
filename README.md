@@ -13,7 +13,7 @@ require_once dirname(__FILE__).'/php-or-bill-decoder/ORBillDecoder.class.php';
 if(!$file = @$argv[1]) die("Usage {$argv[0]} <dat file>");
 
 // Load file
-$btor = new ORBilling();
+$btor = new ORBillDecoder();
 $btor->load($file);
 
 // Render to screen

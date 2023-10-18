@@ -5,7 +5,7 @@
   * @author Leo Brown
   *
   */
-Class ORBilling{
+Class ORBillDecoder{
 
 	var $file;
 
